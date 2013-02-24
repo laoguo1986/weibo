@@ -98,3 +98,20 @@ rails generate controller StaticPages home help about contact --no-test-framewor
   </pre>
   <p>将数字 <tt>0</tt> 换成其他的数字就会回到相应的版本状态，这些版本数字是按照迁移顺序排序的。</p>
 
+##加入仓库
+
+git add .
+
+git commit -m "Add a StaticPages controller"
+
+##测试驱动开发
+
+###生成集成测试（request spec)
+
+rails generate integration_test static_pages
+
+###编辑测试代码
+
+spec/requests/static_pages_spec.rb
+
+

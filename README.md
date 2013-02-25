@@ -114,4 +114,40 @@ rails generate integration_test static_pages
 
 spec/requests/static_pages_spec.rb
 
+#页面美化
+##添加页面函数，简化页面代码
+
+
+pp/helpers/application_helper.rb
+
+
+module ApplicationHelper
+  def full_title(page_title)
+    base_title = "北京计量院专家信息系统"
+		    if page_title.empty?
+				      base_title
+				else
+		       "#{base_title} | #{page_title}"
+			  end
+     end
+  end
+
+##Bootstrap 和自定义的 CSS
+
+###添加gem
+	gem 'bootstrap-sass', '2.0.4'
+
+	bundle install
+
+###自定义css
+
+创建全站使用的css
+
+app/assets/stylesheets/custom.css.scss
+
+静态文件可以存放在三个标准的目录中，各有各的用途：
+1. app/assets：存放当前应用程序用到的资源文件
+2. lib/assets：存放开发团队自己开发的代码库用到的资源文件
+3. vendor/assets：存放第三方代码库用到的资源文件
+
 

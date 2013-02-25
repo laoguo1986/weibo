@@ -2,6 +2,8 @@ source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.12'
 
+gem 'bootstrap-sass', '>= 2.0.4'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 #将 rspec-rails 放在了开发组中，使用 RSpec 相关的生成器了

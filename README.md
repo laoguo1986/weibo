@@ -173,5 +173,60 @@ rails generate integration_test user_pages
 
 生成：spec/requests/user_pages_spec.rb
 
+##用户模型
 
+git checkout master
 
+ git checkout -b modeling-users
+
+ rails generate model User name:string email:string
+
+###模型注释
+ 使用 annotate 注解一下 Rails 模型:gem 'annotate', '˜> 2.4.1.beta'
+
+bundle exec annotate --position before
+
+###创建用户对象
+
+进入控制台沙盒模式
+
+rails console --sandbox
+
+### 验证 name 和 email 属性的存在性:
+
+ validates :name, presence: true
+
+ validates :email, presence: true
+
+ validates :name, presence: true, length: { maximum: 50 }
+
+validates :name,  presence: true, length: { maximum: 50 }
+
+VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
+
+uniqueness: { case_sensitive: false }
+
+在数据库层加上唯一性限制，为email列建立索引，然后为索引加上唯一性限制
+
+rails generate migration add_index_to_users_email
+
+##加上安全密码
+###加密密码
+
+向user表中加入password_digest列，digest是加密哈希函数中的一个术语。
+
+使用bcrypt对密码进行不可逆的加密，gemfile加入
+
+gem 'bcrypt-ruby', '3.0.1'
+
+生成迁移文件，添加password_digest 列
+
+rails generate migration add_password_digest_to_users password_digest:string
+
+rake db:migrate
+
+###密码和密码确认
+
+要把 password 和 password_confirmation 属性设为可访问的,才能在初始化参数中创建用户对象，把两个属性对应的symbol加到可访问的属性列表中

@@ -150,4 +150,28 @@ app/assets/stylesheets/custom.css.scss
 2. lib/assets：存放开发团队自己开发的代码库用到的资源文件
 3. vendor/assets：存放第三方代码库用到的资源文件
 
+###render 复用
+#路由
+
+root to: 'static_pages#home'
+
+match '/help',    to: 'static_pages#help'
+match '/about',   to: 'static_pages#about'
+match '/contact', to: 'static_pages#contact''#''''#''''#''''#'
+
+#用户注册
+##user 控制器
+
+rails generate controller Users new --no-test-framework
+
+##注册页面的URL地址
+match '/signup',  to: 'users#new'
+###集成测试
+我们希望“注册”页面的地址是 /signup,编写集成测试
+
+rails generate integration_test user_pages
+
+生成：spec/requests/user_pages_spec.rb
+
+
 
